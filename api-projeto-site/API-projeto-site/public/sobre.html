@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre | The Last Of Us</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="sortcut icon" href="midia/logo.png" type="image/png" />
+</head>
+<body>
+    <section class="showcase">
+        <header>
+            <h2 class="logo">The Last of Us</h2>
+            <div class="toggle"></div>
+        </header>
+
+        <img id="image_begin" style="display: block;" src="midia/boat-start.jpg" alt="">
+        <img id="image_end" style="display: none;" src="midia/boat-end.jpg" alt="">
+
+        <div class="overlay"></div>
+
+        <div class="box-about">
+            <h3>The Last of Us Parte II</h3><br>
+            <p>O jogo conta a história de duas personagens em busca de vingança e redenção.<br><br>
+            A trama nos remete vários questionamentos sobre quais e quantos tipos de sociedade nós criamos quando tudo aquilo que conhecemos e estamos habituados é destruído.<br><br>
+            No primeiro jogo da trama, os jogadores se afeiçoam com os personagens principais Joel e Ellie, que também estão presentes no segundo jogo. Entretanto, o desfecho da história faz com que você quebre seu <span onclick="sw_image()" class="sw_image">modelo mental</span> adquirido no primeiro jogo e obriga você a praticar empatia dentre outros personagens.<br><br>
+            Um jogo onde entender o lado do outro não é uma opção.</p>
+        </div>
+    </section>
+
+    <div class="menu">
+        <ul>
+            <a href="index.html">
+                <li>Home</li>
+            </a>
+            <a href="sobre.html">
+                <li>Sobre</li>
+            </a>
+            <a href="testes.html">
+                <li>Testes</li>
+            </a>
+            <a href="assista.html">
+                <li>Assista</li>
+            </a>
+            <a href="login.html">
+                <li>Login</li>
+            </a>
+        </ul>
+    </div>
+</body>
+</html>
+<script>
+
+    var menuToggle = document.querySelector('.toggle')
+    var showcase = document.querySelector('.showcase')
+
+    menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active')
+        showcase.classList.toggle('active')
+    })
+
+    function sw_image() {
+        image_begin.style.display = 'none';
+        image_end.style.display = 'inline';
+    }
+
+</script>

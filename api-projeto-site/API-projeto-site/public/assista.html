@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="sortcut icon" href="midia/logo.png" type="image/png" />
+    <title>Assista</title>
+</head>
+
+<body>
+    <section class="showcase">
+        <header>
+            <h2 class="logo">The Last of Us</h2>
+            <div class="toggle"></div>
+        </header>
+
+        <img id="image_begin" src="midia/tlou-light.jpg" alt="">
+
+        <div class="overlay2"><img src="midia/ellie-joel.jpg" alt=""></div>
+
+        <audio id="audio" autoplay="autoplay">
+            <source src="midia/Future Days - Joel.mp3" type="audio/mp3">
+        </audio>
+        
+        <div class="box-options2">
+            <h2>Assista</h2>
+            <a href="jogoHome.html">
+                <h3 class="option">O Jogo</h3>
+            </a><br>
+            <a href="musica.html">
+                <h3 class="option">Musicas</h3>
+            </a>
+        </div>
+    </section>
+
+    <div class="menu">
+        <ul>
+            <a href="index.html">
+                <li>Home</li>
+            </a>
+            <a href="sobre.html">
+                <li>Sobre</li>
+            </a>
+            <a href="testes.html">
+                <li>Testes</li>
+            </a>
+            <a href="assista.html">
+                <li>Assista</li>
+            </a>
+            <a href="login.html">
+                <li>Login</li>
+            </a>
+        </ul>
+    </div>
+
+</body>
+
+</html>
+<script>
+
+    var menuToggle = document.querySelector('.toggle')
+    var showcase = document.querySelector('.showcase')
+
+    menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active')
+        showcase.classList.toggle('active')
+    })
+
+</script>

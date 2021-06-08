@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | The Last Of Us</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/contato-e-login.css">
+    <link rel="sortcut icon" href="midia/logo.png" type="image/png" />
+</head>
+
+<body>
+    <section class="showcase">
+        <header>
+            <h2 class="logo">The Last of Us</h2>
+            <div class="toggle"></div>
+        </header>
+
+        <img id="image_ellie" style="display: block;" src="midia/ellie-login.jpg" alt="">
+        <img id="image_abby" style="display: none;" src="midia/abby.jpg" alt="">
+        <img id="image_joel" style="display: none;" src="midia/joel.jpg" alt="">
+
+        <div class="box-login">
+            <h2>Login</h2>
+            <form id="form_login" method="post" onsubmit="return entrar()">
+                <input type="text" class="input" name="login" placeholder="EMAIL">
+                <br>
+                <input type="password" class="input" name="senha" placeholder="SENHA">
+                <br>
+                <p>Não possui cadastro? <a href="cadastro.html">Clique aqui</a></p>
+
+                <div id="result"></div>
+
+                <div class="extra">
+                    <div id="div_erro" class="msg_erro"></div>
+
+                    <img style="display: none;" src="img/aguarde.gif" id="img_aguarde">
+                    <!--style="display: none;"-->
+                </div>
+
+                <button class="bt_enter" type="submit">Entrar</button><br>
+                <div id="div_invalido"></div>
+            </form>
+        </div>
+    </section>
+    <div class="overlay">
+        <img id="white-circle" onclick="white_bt()" src="midia/white-circle.png" alt="">
+        <img id="grey-circle" onclick="grey_bt()" src="midia/grey-circle.png" alt="">
+        <img id="black-circle" onclick="black_bt()" src="midia/black-circle.png" alt="">
+    </div>
+
+    <div class="menu">
+        <ul>
+            <a href="index.html">
+                <li>Home</li>
+            </a>
+            <a href="sobre.html">
+                <li>Sobre</li>
+            </a>
+            <a href="testes.html">
+                <li>Testes</li>
+            </a>
+            <a href="assista.html">
+                <li>Assista</li>
+            </a>
+            <a href="login.html">
+                <li>Login</li>
+            </a>
+        </ul>
+    </div>
+</body>
+
+</html>
+<script>
+
+    var menuToggle = document.querySelector('.toggle')
+    var showcase = document.querySelector('.showcase')
+
+    menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active')
+        showcase.classList.toggle('active')
+    })
+
+    function white_bt() {
+        image_ellie.style.display = 'inline';
+        image_abby.style.display = 'none';
+        image_joel.style.display = 'none';
+    }
+
+    function grey_bt() {
+        image_ellie.style.display = 'none';
+        image_abby.style.display = 'inline';
+        image_joel.style.display = 'none';
+    }
+
+    function black_bt() {
+        image_ellie.style.display = 'none';
+        image_abby.style.display = 'none';
+        image_joel.style.display = 'inline';
+    }
+
+    function entrar() {
+        var formulario = new URLSearchParams(new FormData(form_login));
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            body: formulario
+        }).then(resposta => {
+            
+            if (resposta.ok) {
+
+                resposta.json().then(json => {
+                    
+                    sessionStorage.id_usuario_meuapp = json.idUsuario;
+                    sessionStorage.login_usuario_meuapp = json.login;
+                    sessionStorage.nome_usuario_meuapp = json.nomeUsuario;
+
+                    window.location.href = 'tempo-real.html';
+                    
+                });
+
+            } else {
+
+                console.log('Erro de login!');
+                div_invalido.innerHTML = '<br>Email ou senha incorreta!';
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+        });
+
+        return false;
+    }
+</script>

@@ -1,0 +1,286 @@
+body {
+    font-family: sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/* body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+        background-color: #ecf0f1;
+} */
+
+
+h1 {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* CABEÇALHO */
+
+.header {
+    background-color: #232323;
+    border-right: 3px solid bisque;
+    width: 25%;
+    height: 100%;
+    position: fixed;
+}
+
+.header .container .highlight {
+    color: black;
+    font-weight: 700;
+}
+
+.usuario {
+    width: 75%;
+    overflow: hidden;
+    margin: auto;
+    text-align: center;
+    color: bisque;
+    font-size: 20px;
+}
+
+.usuario h3 {
+    font-weight: 100;
+}
+
+.header h1 {
+    margin: 35px;
+    margin-bottom: 3%;
+    margin-top: 15%;
+    color: bisque;
+    padding-bottom: 50px;
+    width: 75%;
+    font-size: 30px;
+}
+
+.header ul {
+    list-style-type: none;
+    float: left;
+    margin-left: 6%;
+    width: 60%;
+    text-align: center;
+    margin-top: 20%;
+}
+
+.header li {
+    margin: 0 0 30px 0;
+}
+
+.header a {
+    text-transform: uppercase;
+    color: bisque;
+}
+
+.header a:hover {
+    font-weight: bold;
+}
+
+.header .current {
+    color: orangered;
+    font-weight: bold;
+}
+
+/* dashboard */
+
+.dashboard {
+    padding: 30px 0;
+    width: 75%;
+    height: 597px;
+    margin-left: auto;
+    background-image: url(../midia/lago.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.dashboard .img_user {
+    width: 500px;
+    float: left;
+    box-shadow: 8px 8px 5px black;
+    cursor: pointer;
+}
+
+.dashboard .img_user:hover {
+    filter: brightness(30%);
+}
+
+.text_watch {
+    position: absolute;
+    color:white;
+    text-align: center;
+    top: 200px;
+    left: 550px;
+    text-transform: uppercase;
+    font-size: 30px;
+}
+
+.text_survey {
+    position: absolute;
+    color: white;
+    text-align: center;
+    top: 200px;
+    right: 162px;
+    text-transform: uppercase;
+    font-size: 23px;
+}
+
+.dashboard .img_ellie {
+    width: 218px;
+    margin-left: 3%;
+    box-shadow: 8px 8px 5px black;
+    cursor: pointer;
+}
+
+.dashboard .img_ellie:hover {
+    filter: brightness(30%);
+}
+
+.imgs {
+    margin-left: 13%;
+}
+
+.music_original {
+    margin-top: 1%;
+    margin-left: 7.2%;
+    text-align: center;
+    /* background-color: blue; */
+    width: 85%;
+}
+
+.bt_original_music {
+    border: none;
+    padding: 8px 285px;
+    font-size: 20px;
+    font-weight: 700;
+    background-color: #232323;
+    color: white;
+    box-shadow: 3px 3px 1px bisque;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.bt_original_music:hover {
+    color: #232323;
+    background-color: bisque;
+    box-shadow: 3px 3px 1px #232323;
+}
+
+.original_song {
+    margin-top: 1.5%;
+}
+
+.original_song iframe {
+    border-radius: 10px;
+}
+
+/* Game songs */
+
+.music_game {
+    margin-top: 1%;
+    text-align: center;
+    margin-left: 7.2%;
+    /* background-color: blue; */
+    width: 85%;
+}
+
+.bt_game_music {
+    border: none;
+    padding: 8px 285px;
+    font-size: 20px;
+    font-weight: 700;
+    background-color: #232323;
+    color: white;
+    box-shadow: 3px 3px 1px bisque;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.bt_game_music:hover {
+    color: #232323;
+    background-color: bisque;
+    box-shadow: 3px 3px 1px #232323;
+}
+
+.game_song {
+    margin-top: 1.5%;
+}
+
+.game_song img {
+    width: 23%;
+    box-shadow: 5px 5px 10px black;
+    float: left;
+    margin-left: 8%;
+    cursor: pointer;
+}
+
+/* Enquete */
+
+.enquete {
+    background-color: #1d1d1de8;
+    color: white;
+    margin: -3% 10%;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #000000;
+}
+
+.enquete h2 {
+    text-align: center;
+    padding-top: 4%;
+    font-size: 30px;
+    text-transform: uppercase;
+    color: blanchedalmond;
+}
+
+.enquete form {
+    padding: 0 15%;
+    padding-bottom: 5%;
+    text-align: center;
+}
+
+.enquete span {
+    font-weight: 600;
+    font-size: 18px;
+    color: blanchedalmond;
+}
+
+.bt_enviar {
+    border: none;
+    padding: 10px 40px;
+    font-size: 18px;
+    font-weight: 700;
+    box-shadow: 8px 8px 1px black;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.bt_enviar:hover {
+    letter-spacing: 6px;
+}
+
+/* Chart.js */
+
+.grafico {
+    background-color: #6b6b6bbe;
+    padding-bottom: 30px;
+    margin-left: 6.5%;
+    margin-top: 5%;
+    width: 900px;
+}
+
+.grafico canvas {
+    margin: 0;
+    margin-top: -5%;
+}
+
+.grafico h2 {
+    padding-top: 2%;
+    text-align: center;
+}
+

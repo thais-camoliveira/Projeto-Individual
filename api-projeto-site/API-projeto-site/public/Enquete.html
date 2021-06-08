@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquete | The Last Of Us</title>
+    <link rel="stylesheet" href="css/dashboards.css">
+    <link rel="sortcut icon" href="midia/logo.png" type="image/png" />
+
+    <!-- script do google charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="funcoes.js"></script>
+
+    <style>
+        /* Classes CSS para exemplos de alertas */
+
+        .normal {
+            background-color: white;
+        }
+
+        .alerta-alto {
+            color: tomato;
+
+        }
+
+        .alerta-baixo {
+            color: rgb(38, 0, 255);
+
+        }
+    </style>
+</head>
+
+<body>
+    <!--header inicio-->
+    <div class="header">
+        <div class="container">
+            <h1 class="titulo">THE LAST OF US</h1>
+            <div class="nav">
+                <ul>
+                    <li><a href="tempo-real.html">Home</a></li>
+                    <li><a href="testes.html">Testes</a></li>
+                    <li><a href="pagina-estatica-chartsjs.html"><i>Ver Estatísticas</i></a></li>
+                    <li><a href="#" class="highlight" onclick="logoff()">LOGOUT</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--header fim-->
+
+    <div class="dashboard">
+        <div class="container">
+            <div id="enquete" class="enquete">
+                <h2>Enquete</h2>
+                <form id="form_enquete" method="post" onsubmit="return enviar()">
+                    <span>Informe sua idade atual:</span> 
+                    <input type="text" name="idadeUser" class="input_enquete">
+                    
+                    <br><br>
+
+                    <span>Qual seu gênero?</span> <br>
+                    <input type="radio" name="genero" value="Feminino">Feminino
+                    <input type="radio" name="genero" value="Masculino">Masculino
+                    <input type="radio" name="genero" value="Nao-binario">Não-binário
+                    
+                    <br><br>
+
+                    <span>Você já jogou The Last of Us?</span> <br>
+                    <input type="radio" name="jogou" value="Sim">Sim
+                    <input type="radio" name="jogou" value="Nao">Não
+
+                    <br><br>
+
+                    <span>Você já assistiu alguém jogar esse jogo?</span> <br>
+                    <input type="radio" name="assistiu" value="Sim">Sim
+                    <input type="radio" name="assistiu" value="Nao">Não
+
+                    <br><br>
+
+                    <span>Você gostou de The Last of Us Parte II?</span> <br>
+                    <input type="radio" name="gostou" value="Sim">Sim
+                    <input type="radio" name="gostou" value="Nao">Não
+
+                    <br><br>
+
+                    <span>Qual personagem das personagens principais você mais simpatizou?</span> <br>
+                    <input type="radio" name="personagemFav" value="Abby">Abby
+                    <input type="radio" name="personagemFav" value="Ellie">Ellie
+
+                    <br><br>
+
+                    <span>Qual dos dois jogos você achou melhor?</span> <br>
+                    <input type="radio" name="melhorJogo" value="1">The Last Of Us
+                    <input type="radio" name="melhorJogo" value="2">The Last Of Us Parte II
+
+                    <br><br>
+                    
+                    <button type="submit" id="bt_enviar" value="enviar" class="bt_enviar">Enviar</button><br><br>
+                    <div id="div_erro"></div>
+                                                          
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+<script>
+    function enviar() {
+        var formulario = new URLSearchParams(new FormData(form_enquete));
+        fetch("/enquetes/enviar", {
+            method: "POST",
+            body: formulario
+        }).then(function (response) {
+            if (response.ok) {
+                alert("Teste enviado!");
+                window.location.href = 'tempo-real.html';
+            } else {
+                console.log('Erro ao enviar questionario!');
+                
+                response.text().then(function (resposta) {
+                    div_erro.innerHTML = resposta;
+                });
+            }
+        });
+
+        return false;
+    }
+</script>

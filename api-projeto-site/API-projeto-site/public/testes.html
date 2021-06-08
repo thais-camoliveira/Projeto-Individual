@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogos & Testes | The Last Of Us</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="sortcut icon" href="midia/logo.png" type="image/png" />
+</head>
+
+<body>
+    <section class="showcase">
+        <header>
+            <h2 class="logo">The Last of Us</h2>
+            <div class="toggle"></div>
+        </header>
+
+        <img id="image_begin" src="midia/gina.jpg" alt="">
+
+        <div class="overlay"></div>
+
+        <div class="box-options">
+            <a href="quizz.html">
+                <div class="quizz">
+                    <h3>Quem você seria em The Last of Us Part II?</h3>
+                </div>
+            </a>
+            <a href="caça-niquel.html">
+                <div class="quizz">
+                    <h3>Caça-Níquel</h3>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <div class="menu">
+        <ul>
+            <a href="index.html">
+                <li>Home</li>
+            </a>
+            <a href="sobre.html">
+                <li>Sobre</li>
+            </a>
+            <a href="testes.html">
+                <li>Testes</li>
+            </a>
+            <a href="assista.html">
+                <li>Assista</li>
+            </a>
+            <a href="login.html">
+                <li>Login</li>
+            </a>
+        </ul>
+    </div>
+
+</body>
+
+</html>
+<script>
+
+    var menuToggle = document.querySelector('.toggle')
+    var showcase = document.querySelector('.showcase')
+
+    menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active')
+        showcase.classList.toggle('active')
+    })
+
+</script>

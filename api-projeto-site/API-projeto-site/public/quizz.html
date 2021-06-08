@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz | The Last Of Us</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="sortcut icon" href="midia/logo.png" type="image/png" />
+</head>
+
+<body>
+    <section class="showcase">
+        <header>
+            <h2 class="logo">The Last of Us</h2>
+            <div class="toggle"></div>
+        </header>
+
+        <img id="main_page" style="display: block;" src="midia/violao_img.jpg" alt="">
+        <img id="abby_result" style="display: none;" src="midia/abby.jpg" alt="Abby">
+        <img id="joel_result" style="display: none;" src="midia/joel.jpg" alt="Joel">
+        <img id="jesse_result" style="display: none;" src="midia/jesse.jpg" alt="Jesse">
+        <img id="ellie_result" style="display: none;" src="midia/ellie-login.jpg" alt="Ellie">
+        <img id="dina_result" style="display: none;" src="midia/gina2.jpg" alt="Dina">
+        <img id="lev_result" style="display: none;" src="midia/Lev.jpg" alt="Lev">
+
+        <button style="display: block;" id="bt_iniciar" class="bt_start" onclick="iniciar()">Iniciar</button>
+
+        <div style="display: none;" id="box_questao" class="box-question">
+            <h2 onclick="fazer_pergunta()">Questão</h2>
+            <div id="questoes" class="question"><b></b></div><br>
+            <div class="options">
+                <div onclick="alternativas('A')" id="option_A" class="option_st"></div>
+                <div onclick="alternativas('B')" id="option_B" class="option_st"></div>
+                <div onclick="alternativas('C')" id="option_C" class="option_st"></div>
+                <div onclick="alternativas('D')" id="option_D" class="option_st"></div>
+            </div><br>
+            <div class="counter"><span id="contador_respostas"></span>/<span id="maxRespostas"></span></div>
+        </div>
+
+        <div style="display: none;" id="box_resultado" class="box-result">
+            <h2 id="nome_resultado"></h2>
+            <p id="personagem"></p><br>
+            <a href="quizz.html"><button class="bt_quizz">Refazer Quizz</button></a>
+        </div>
+    </section>
+
+    <div class="menu">
+        <ul>
+            <a href="index.html">
+                <li>Home</li>
+            </a>
+            <a href="sobre.html">
+                <li>Sobre</li>
+            </a>
+            <a href="testes.html">
+                <li>Testes</li>
+            </a>
+            <a href="assista.html">
+                <li>Assista</li>
+            </a>
+            <a href="login.html">
+                <li>Login</li>
+            </a>
+        </ul>
+    </div>
+
+</body>
+
+</html>
+<script>
+
+    var menuToggle = document.querySelector('.toggle')
+    var showcase = document.querySelector('.showcase')
+
+    menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active')
+        showcase.classList.toggle('active')
+    })
+
+    var questao = ['Você pratica muita atividade física?', 'Em uma sexta a noite, o que você prefere?', 'Você é uma pessoa silênciosa ou barulhenta?', 'Você fica bravo facilmente?', 'Você gosta de café?', 'Você gosta de fazer piadas?', 'Prefere cães ou gatos?', 'Em um apocalipse zombie, que arma você escolheria?', 'Quais das profissões a seguir mais se encaixa com você?', 'Você segue muito as regras na vida?'];
+
+    var respostasA = ['Sim', 'Assistir um filme', 'Depende', 'Não', 'Odeio café!', 'Não', 'Gatos', 'Espingarda', 'Atleta', 'Totalmente'];
+    var respostasB = ['Não', 'Estudar', '"Silêncio!', 'Totalmente', 'Sim', 'Odeio!', 'Tanto faz!', 'Sniper', 'Mecânico', 'Sim'];
+    var respostasC = ['As vezes', 'Dormir', 'Silenciosa', 'Depende', 'Mais ou menos', 'Sempre!', 'Cachorros', 'Arco e flecha', 'Cantor', 'Não'];
+    var respostasD = ['Nunca!!!', 'Ir a uma festa', 'Barulhenta', 'Sim', 'Apenas um pouco', 'Sim', 'Eu amo ambos', 'Não gosto de armas', 'Médico(a)', 'As vezes'];
+
+    var respostas = []
+
+    var contador = 0;
+
+    function iniciar() {
+        bt_iniciar.style.display = 'none';
+        box_questao.style.display = 'block';
+        fazer_pergunta();
+    }
+
+    function fazer_pergunta() {
+        questoes.innerHTML = questao[contador];
+        option_A.innerHTML = respostasA[contador];
+        option_B.innerHTML = respostasB[contador];
+        option_C.innerHTML = respostasC[contador];
+        option_D.innerHTML = respostasD[contador];
+        contador_respostas.innerHTML = contador;
+        maxRespostas.innerHTML = questao.length;
+    }
+
+    function alternativas(opcao) {
+        respostas.push(opcao);
+        contador++;
+        if (contador >= (questao.length)) {
+            return resultado()
+        }
+        fazer_pergunta();
+    }
+
+    function resultado() {
+        var count_A = 0;
+        var count_B = 0;
+        var count_C = 0;
+        var count_D = 0;
+
+
+        for (let contadorAlternativa = 0; contadorAlternativa < respostas.length; contadorAlternativa++) {
+            if (respostas[contadorAlternativa] === 'A') {
+                count_A++
+            }
+            if (respostas[contadorAlternativa] === 'B') {
+                count_B++
+            }
+            if (respostas[contadorAlternativa] === 'C') {
+                count_C++
+            }
+            if (respostas[contadorAlternativa] === 'D') {
+                count_D++
+            }
+        }
+
+        //Outra maneira de se aplicar:
+
+        /*respostas.forEach(element => {
+            if (element === 'A'){
+                count_A++
+            }
+            if (element === 'B'){
+                count_B++
+            }
+            if (element === 'C'){
+                count_C++
+            }
+            if (element === 'D'){
+                count_D++
+            }
+        });*/
+
+        switch (true) {
+            case (count_A >= 8 || (count_A >= 6 && count_B >= 1 && count_B < 4 && count_C >= 1 && count_C <= 2 && count_D === 0)):
+                //Abby
+                box_questao.style.display = 'none';
+                box_resultado.style.display = 'inline';
+                main_page.style.display = 'none';
+                abby_result.style.display = 'inline';
+                box_resultado.style.display = 'inline';
+                nome_resultado.innerHTML = '<span style="color: black;">Abby Anderson</span>';
+                personagem.innerHTML = 'Uma pessoa muito focada em todos os objetivos que se propoe a fazer e com um grande senso de responsabilidade. Adora se exercitar.<br><br> Se adapta facilmente ao ambiente e possui muita determinação e persistência, sendo capaz de fazer qualquer coisa para conseguir aquilo que mais deseja.';
+                break;
+            case (count_A >= 3 && count_B <= 1 && count_C >= 4 && count_D <= 2):
+                //Joel
+                box_questao.style.display = 'none';
+                box_resultado.style.display = 'inline';
+                main_page.style.display = 'none';
+                joel_result.style.display = 'inline';
+                box_resultado.style.display = 'inline';
+                nome_resultado.innerHTML = '<span style="color: black;">Joel Miller</span>';
+                personagem.innerHTML = 'Você tem um estilo de luta brutal e é capaz de enfrentar e derrotar homens muito mais jovens em combate corpo a corpo.<br><br> Poucas são as pessoas que não te veem como uma pessoa endurecida fisicamente e mentalmente.';
+                break;
+            case (count_B >= 4):
+                //Jesse
+                box_questao.style.display = 'none';
+                box_resultado.style.display = 'inline';
+                main_page.style.display = 'none';
+                jesse_result.style.display = 'inline';
+                box_resultado.style.display = 'inline';
+                nome_resultado.innerHTML = '<span style="color: #FFF;">Jesse</span>';
+                personagem.innerHTML = '<span style="color: #FFF;">Uma pessoa carasca e que ao mesmo tempo gosta de ajudar os amigos. <br><br> Você tende ser bem alegre quando está entre amigos, mas as pessoas que te veem de fora dificilmente te enxergam assim.</span>';
+                break;
+            case (count_C >= 7 && count_B <= 2):
+                //Ellie
+                box_questao.style.display = 'none';
+                box_resultado.style.display = 'inline';
+                main_page.style.display = 'none';
+                ellie_result.style.display = 'inline';
+                box_resultado.style.display = 'inline';
+                nome_resultado.innerHTML = 'Ellie Williams';
+                personagem.innerHTML = 'Uma pessoa intrigante e complexa, com um senso de humor ácido e inteligente.<br><br> Possui grande resiliência física, força emocional e na maioria das vezes destemida.';
+                break;
+            case (count_D >= 3):
+                //Dina
+                box_questao.style.display = 'none';
+                box_resultado.style.display = 'inline';
+                main_page.style.display = 'none';
+                dina_result.style.display = 'inline';
+                box_resultado.style.display = 'inline';
+                nome_resultado.innerHTML = '<span style="color: black;">Dina</span>';
+                personagem.innerHTML = 'Uma pessoa muito alto astral. Adora festejar e elevar sua adrenalina.<br><br> Também é o tipo de amigo para toda a hora e as pessoas sabem que sempre podem contar com você.';
+                break;
+            default:
+                //Lev
+                box_questao.style.display = 'none';
+                box_resultado.style.display = 'inline';
+                main_page.style.display = 'none';
+                lev_result.style.display = 'inline';
+                box_resultado.style.display = 'inline';
+                nome_resultado.innerHTML = '<span style="color: #FFF;">Lev</span>';
+                personagem.innerHTML = '<span style="color: #FFF;">Uma pessoa extremamente determinada a ser quem você é!<br> Seus princípios são inquebravéis e sua bravura é predominante.</span>';
+                break;
+        }
+
+    }
+</script>

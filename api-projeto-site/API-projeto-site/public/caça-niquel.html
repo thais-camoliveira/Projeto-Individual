@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="sortcut icon" href="midia/logo.png" type="image/png" />
+    <title>Caça-Níquel | The Last Of Us</title>
+</head>
+
+<body>
+    <section class="showcase">
+        <header>
+            <h2 class="logo">The Last of Us</h2>
+            <div class="toggle"></div>
+        </header>
+
+        <img src="midia/fundo_caça.png" alt="">
+
+        <div class="color">
+            <h1 class="contrast">Teste sua sorte</h1>
+        </div>
+
+        <div id="choose_box" class="choose_box">
+            Escolha um Personagem:
+            <select id="sel_personagem">
+                <option value="Abby2">Abby</option>
+                <option value="Dina">Dina</option>
+                <option value="Ellie">Ellie</option>
+            </select>
+        </div>
+
+        <div id="box_buttom" class="box_buttom">
+            <button onclick="sortear()">Sortear</button>
+            <button onclick="encerrar()">Encerrar</button>
+        </div>
+        <p class="info">A cada "SORTEAR" você perde 3 pontos!<br>
+            Clique em "ENCERRAR" para ver o resultado</p>
+
+        <div class="cassino">
+            <img src="midia/caça_ni.png" alt="">
+        </div>
+        <div class="cassino_pontos">
+            <div id="div_pontuacao" class="pontos"></div>
+        </div>
+        <div class="imgs_result">
+            <div id="div_personagens"><img src="midia/random.PNG" alt=""><img src="midia/random.PNG" alt=""><img src="midia/random.PNG" alt=""></div>
+        </div>
+
+        <button class="rules"><a href="regras.html">Regras</a></button>
+
+    </section>
+
+    <div class="menu">
+        <ul>
+            <a href="index.html">
+                <li>Home</li>
+            </a>
+            <a href="sobre.html">
+                <li>Sobre</li>
+            </a>
+            <a href="testes.html">
+                <li>Testes</li>
+            </a>
+            <a href="assista.html">
+                <li>Assista</li>
+            </a>
+            <a href="login.html">
+                <li>Login</li>
+            </a>
+        </ul>
+    </div>
+
+</body>
+
+</html>
+<script>
+
+    var menuToggle = document.querySelector('.toggle')
+    var showcase = document.querySelector('.showcase')
+
+    menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active')
+        showcase.classList.toggle('active')
+    })
+
+    var personagens = ["Abby2", "Dina", "Ellie"];
+    var pontos_gasta = 0;
+    var pontuacao_ganha = [0, 2, 4, 8];
+    var pontuacao_total = 0;
+    // var rodadas = [];
+    var rodadas = 0;
+
+    function sortear() {
+        pontos_gasta += 3;
+        rodadas++;
+
+        div_personagens.innerHTML = '';
+        div_pontuacao.innerHTML = '';
+
+        var personagem_esperado = sel_personagem.value;
+
+        var acertos = 0;
+
+        var personagens_sorteados = [];
+              
+        for (contador = 0; contador < 3; contador++) {
+            var sorteio_personagem = parseInt(Math.random() * 3); // 0 a 2
+
+            var personagem_sorteado = personagens[sorteio_personagem];
+
+            personagens_sorteados.push(personagem_sorteado);
+
+            if (personagem_sorteado == personagem_esperado) {
+                acertos++;
+            }
+
+            div_personagens.innerHTML += `<img src="${personagem_sorteado}.jpg">`;
+            
+            console.log(rodadas);
+        }
+        var pontuacao_rodada = pontuacao_ganha[acertos];
+
+        pontuacao_total += pontuacao_rodada;
+
+        div_pontuacao.innerHTML += `Você ganhou ${pontuacao_rodada} nessa rodada!`;
+        console.log(pontuacao_ganha);
+
+        // rodadas.push(`Rodada - ${rodadas.length+1} -- `)
+    }
+
+    function encerrar() {
+
+        var final_score = pontuacao_total - pontos_gasta;
+        if (final_score > 0) {
+            var sorte = "Parabéns! Você tem sorte!";
+            div_pontuacao.innerHTML = `<span style="font-size: 18px;"><h2>${sorte}</h2>Você jogou o total de ${rodadas} rodadas!<br>
+        Você possui um saldo de ${final_score} pontos.</span>`
+        } else if (final_score < 0) {
+            var azar = "Não foi dessa vez... Você não tem sorte!!";
+            div_pontuacao.innerHTML = `<span style="font-size: 18px;"><h2>${azar}</h2>Você jogou o total de ${rodadas} rodadas!<br>
+        Você possui um saldo de ${final_score} pontos.</span>`
+        } else {
+            var zero = "Não perder já é um começo!";
+            div_pontuacao.innerHTML = `<span style="font-size: 18px;"><h2>${zero}</h2>Você jogou o total de ${rodadas} rodadas!<br>
+        Você possui um saldo de ${final_score} pontos.</span>`
+        }
+    }
+</script>

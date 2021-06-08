@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estatísticas | The Last Of Us</title>
+    <link rel="stylesheet" href="css/dashboards.css">
+    <link rel="sortcut icon" href="midia/logo.png" type="image/png" />
+
+    <!-- script do google charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="funcoes.js"></script>
+
+    <!-- scripts do Chart.js -->
+    <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+    <script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script>
+    <script type="text/javascript" src="funcoes.js"></script>
+
+    <style>
+        /* Classes CSS para exemplos de alertas */
+
+        .normal {
+            background-color: white;
+        }
+
+        .alerta-alto {
+            background-color: tomato;
+        }
+
+        .alerta-baixo {
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+
+<body onload="grafico()">
+    <!--header inicio-->
+
+    <div class="header">
+        <div class="container">
+            <h1 class="titulo">THE LAST OF US</h1>
+            <div class="usuario">
+                <h3>Olá, <b id="b_usuario"></b></h3>
+            </div>
+            <div class="nav">
+                <ul>
+                    <li> <a href="tempo-real.html">Voltar</a></li>
+                    <li><a href="#" class="highlight" onclick="logoff()">LOGOUT</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--header fim-->
+    <div class="dashboard">
+        <div class="grafico">
+            <h2>Gêneros dos usuários que mais se interessam por The Last Of Us</h2>
+            <div id="grafico" style="width:100%; margin: auto">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+</html>
+<script>
+
+    Chart.defaults.global.defaultFontColor = "#000";
+
+    verificar_autenticacao();
+
+    function grafico() {
+
+        fetch(`/usuarios/pagina_estatica_chartsjs`)
+            .then(resposta => {
+                if (resposta.ok) {
+                    resposta.json().then(function (resposta) {
+
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        var ctx = document.getElementById('myChart').getContext('2d');
+                        var myChart = new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: ['Masculino', 'Feminino', 'Não-binário'],
+                                datasets: [{
+                                    label: '# of Votes',
+                                    data: [resposta.Masculino, resposta.Feminino, resposta.NaoBinario],
+                                    backgroundColor: [
+                                        'rgba(116, 185, 255,1.0)',
+                                        'rgba(178, 190, 195,1.0)',
+                                        'rgba(255, 99, 132, 0.2)'
+
+
+                                    ],
+                                    borderColor: [
+                                        'rgba(255, 99, 132, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)'
+
+
+                                    ],
+                                    borderWidth: 0
+
+
+                                }]
+                            },
+                            options: {
+
+                                title: {
+                                    // mostrar titulo?
+                                    display: true,
+                                    // tamanho do texto
+                                    fontSize: 20,
+                                    // texto no titulo
+                                    text: 'Gêneros',
+                                    // onde? right? left? top?
+                                    position: 'top',
+                                },
+                                legend: {
+                                    // mostrar legenda?
+                                    display: true,
+                                    // ao contrario? (dataset 1 depois de 2)
+                                    reverse: false,
+                                    // onde?
+                                    position: 'bottom'
+                                },
+                                layout: {
+                                    padding: {
+                                        // padding do grafico, pode add right e bottom também
+                                        left: 50,
+                                        top: 50
+                                    },
+
+                                }
+                            }
+                        })
+
+
+                    });
+                } else {
+
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do banco de dados: ${error.message}`);
+            });
+
+    }
+
+</script>

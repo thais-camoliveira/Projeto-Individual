@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Musica | The Last Of Us</title>
+    <link rel="sortcut icon" href="midia/logo.png" type="image/png" />
+</head>
+
+<body>
+
+    <section class="showcase_Music">
+        <header>
+            <h2 class="logo">The Last of Us</h2>
+            <div class="toggle"></div>
+        </header>
+
+        <img id="image_begin" src="midia/tlou-light.jpg" alt="">
+
+        <div id="overlay3" class="overlay3"><iframe id="video_yt" width="653" height="400"
+                src="https://www.youtube.com/embed/yIUQc7IMAPQ"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe></div>
+
+        <div class="box_streamers">
+            <h3 class="streamer">Musicas</h3>
+        </div>
+
+
+        <div class="box-videos">
+            <h2>Playlist</h2>
+            <div class="video-scroll">
+                <div class="videos">
+                    <div class="video" onclick="change_video(0)">
+                        <img src="img streamer/Music01-Joel.PNG" alt="">
+                        <h3>Joel - Future Days<br>The Last of Us Parte II</h3><br><br>
+                    </div>
+
+                    <div class="video" onclick="change_video(1)">
+                        <img src="img streamer/Music01-Ellie.PNG" alt="">
+                        <h3>Ellie - Through The Valley (Versão Completa)</h3><br><br>
+                    </div>
+
+                    <div class="video" onclick="change_video(2)">
+                        <img src="img streamer/Music02-Ellie_Take on me.PNG" alt="">
+                        <h3>Ellie - Take on Me <br> The Last Of Us Parte II </h3><br><br>
+                    </div>
+
+                    <div class="video" onclick="change_video(3)">
+                        <img src="img streamer/Music03-Take on me.PNG" alt="">
+                        <h3>Luiza Caspary - Take On Me<br>The Last Of Us Parte II</h3><br><br>
+                    </div>
+
+                    <div class="video" onclick="change_video(4)">
+                        <img src="img streamer/Music04-FutureDays Eddie.PNG" alt="">
+                        <h3>Eddie Vedder - Future Days<br> The Last Of Us Parte II</h3><br><br>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="menu">
+        <ul>
+            <a href="index.html">
+                <li>Home</li>
+            </a>
+            <a href="sobre.html">
+                <li>Sobre</li>
+            </a>
+            <a href="testes.html">
+                <li>Testes</li>
+            </a>
+            <a href="assista.html">
+                <li>Assista</li>
+            </a>
+            <a href="login.html">
+                <li>Login</li>
+            </a>
+        </ul>
+    </div>
+
+</body>
+
+</html>
+<script>
+
+    var menuToggle = document.querySelector('.toggle')
+    var showcase = document.querySelector('.showcase_Music')
+
+    menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active')
+        showcase.classList.toggle('active')
+    })
+
+    var urlVideos = ['https://www.youtube.com/embed/yIUQc7IMAPQ', 'https://www.youtube.com/embed/P_-cup7aXMQ', 'https://www.youtube.com/embed/JeHRqAu2DC0', 'https://www.youtube.com/embed/JyN4Rc-ny4M', 'https://www.youtube.com/embed/Jkv69V7DnnQ'];
+
+    function change_video(index) {
+        document.getElementById('video_yt').src = urlVideos[index];
+    }
+   
+</script>

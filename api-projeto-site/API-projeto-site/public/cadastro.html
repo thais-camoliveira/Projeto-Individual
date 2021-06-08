@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro | The Last Of Us</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="sortcut icon" href="midia/logo.png" type="image/png" />
+</head>
+
+<body>
+
+    <section class="showcase">
+        <header>
+            <h2 class="logo">The Last of Us</h2>
+            <div class="toggle"></div>
+        </header>
+
+        <img src="midia/casa.jpg" alt="">
+
+        <div class="box-cadastro">
+            <h1>Cadastre-se</h1><br>
+            <div class="formulario">
+                <form id="form_cadastro" method="post" onsubmit="return cadastrar()">
+                    <input type="text" name="nome" class="input-padrao" autofocus="autofocus"
+                        placeholder="Nome e sobrenome" required minlength="4"><br>
+
+                    <input type="text" name="login" class="input-padrao" placeholder="Email" required minlength="4"><br>
+
+                    <input type="password" name="senha" class="input-padrao" id="id_senha"
+                        placeholder="Insira uma senha" required minlength="4"><br>
+
+                    <input type="password" name="senha_conf" class="input-padrao" id="id_senha_confirm"
+                        placeholder="Confirme sua senha" required minlength="4"><br>
+
+                    <button type="submit" id="btn_entrar" value="Cadastrar" class="bt-cadastrar">Cadastrar</button>
+                </form>
+
+                <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
+                    Erro no cadastro
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="overlay"></div>
+
+    <div class="menu">
+        <ul>
+            <a href="index.html">
+                <li>Home</li>
+            </a>
+            <a href="sobre.html">
+                <li>Sobre</li>
+            </a>
+            <a href="testes.html">
+                <li>Testes</li>
+            </a>
+            <a href="assista.html">
+                <li>Assista</li>
+            </a>
+            <a href="login.html">
+                <li>Login</li>
+            </a>
+        </ul>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    var menuToggle = document.querySelector('.toggle')
+    var showcase = document.querySelector('.showcase')
+
+    menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active')
+        showcase.classList.toggle('active')
+    })
+
+    function cadastrar() {
+        if (id_senha.value == id_senha_confirm.value) {
+            aguardar();
+            var formulario = new URLSearchParams(new FormData(form_cadastro));
+            fetch("/usuarios/cadastrar", {
+                method: "POST",
+                body: formulario
+            }).then(function (response) {
+
+                if (response.ok) {
+
+                    window.location.href = 'login.html';
+
+                } else {
+
+                    console.log('Erro de cadastro!');
+                    response.text().then(function (resposta) {
+                        div_erro.innerHTML = resposta;
+                    });
+                    finalizar_aguardar();
+                }
+            });
+
+            return false;
+        } else {
+            alert ("As senhas devem ser iguais!");
+            return false;
+        }
+    }
+
+    function aguardar() {
+        btn_entrar.disabled = true;
+        div_erro.style.display = 'none';
+    }
+
+    function finalizar_aguardar() {
+        btn_entrar.disabled = false;
+        div_erro.style.display = 'block';
+    }
+
+</script>

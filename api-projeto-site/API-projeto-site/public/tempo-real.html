@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="css/dashboards.css">
+    <link rel="sortcut icon" href="midia/logo.png" type="image/png" />
+
+    <!-- script do google charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="funcoes.js"></script>
+
+    <style>
+        /* Classes CSS para exemplos de alertas */
+
+        .normal {
+            background-color: white;
+        }
+
+        .alerta-alto {
+            color: tomato;
+
+        }
+
+        .alerta-baixo {
+            color: rgb(38, 0, 255);
+
+        }
+    </style>
+</head>
+
+<body>
+    <!--header inicio-->
+
+    <div class="header">
+        <div class="container">
+            <h1 class="titulo">THE LAST OF US</h1>
+            <div class="usuario">
+                <h3>Olá, <b id="b_usuario"></b></h3>
+            </div>
+            <div class="nav">
+                <ul>
+                    <li><a href="testes.html">Testes</a></li>
+                    <li><a href="pagina-estatica-chartsjs.html"><i>Ver Estatísticas</i></a></li>
+                    <li><a href="#" class="highlight" onclick="logoff()">LOGOUT</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--header fim-->
+
+    <div class="dashboard">
+        <div class="container">
+            <div class="imgs">
+                <a href="jogo.html">
+                    <div onmouseover="watch()" onmouseout="watchOut()">
+                        <img class="img_user" src="midia/img_usuario.jpg" alt="">
+                        <div id="text_watch" style="display: none;" class="text_watch">
+                            <h2>Assista</h2>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <a href="Enquete.html">
+                <div onmouseover="enquete()" onmouseout="enqueteOut()">
+                    <img class="img_ellie" src="midia/ellie2.jpg" alt="">
+                    <div id="text_enquete" style="display: none;" class="text_survey">
+                        <h2>Enquete</h2>
+                    </div>
+                </div>
+            </a>
+
+            <div style="display: block;" id="original_music" class="music_original">
+                <button class="bt_original_music" onclick="Original_songs()">Músicas Originais</button>
+
+                <div class="original_song">
+                    <iframe src="https://open.spotify.com/embed/track/22sDLvlzAJzH0BHiMSOfRP" width="240" height="265"
+                        frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+
+                    <iframe src="https://open.spotify.com/embed/track/2WfaOiMkCvy7F5fcp2zZ8L" width="240" height="265"
+                        frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+
+                    <iframe src="https://open.spotify.com/embed/track/6YowAxI2HIbhAwumOqpldE" width="240" height="265"
+                        frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                </div>
+            </div>
+
+            <div id="game_music" class="music_game" style="display: none;">
+                <button class="bt_game_music" onclick="game_songs()">Versões do Jogo</button>
+
+                <div class="game_song">
+                    <img onmouseover="mouseOver('Future_Days')" onmouseout="mouseOut('Future_Days')" id="joel_song"
+                        src="midia/ellie-joel.jpg" alt="">
+                    <img onmouseover="mouseOver('Take_on_Me')" onmouseout="mouseOut('Take_on_Me')" id="dina_song"
+                        src="midia/Dina & Ellie.jpg" alt="">
+                    <img onmouseover="mouseOver('Through_The_Valley')" onmouseout="mouseOut('Through_The_Valley')"
+                        id="ellie_song" src="midia/ellie-violao.jpg" alt="">
+
+                    <audio id="Future_Days" src="songs/Joel - Future Days (from The Last of Us Part II).mp3"></audio>
+                    <audio id="Take_on_Me" src="songs/The Last of Us 2 - Ellie Take on Me Cover Song.mp3"></audio>
+                    <audio id="Through_The_Valley"
+                        src="songs/Ellie - Through The Valley FULL SONG The Last of Us Part II.mp3"></audio>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Start of tlou Zendesk Widget script -->
+    <script id="ze-snippet"
+        src="https://static.zdassets.com/ekr/snippet.js?key=e0c23705-5666-42eb-9e94-a62067733ee4"> </script>
+    <!-- End of tlou Zendesk Widget script -->
+
+
+
+</body>
+<script>
+
+    verificar_autenticacao();
+
+    function Original_songs() {
+        original_music.style.display = 'none';
+        game_music.style.display = 'block';
+    }
+
+    function game_songs() {
+        game_music.style.display = 'none';
+        original_music.style.display = 'block';
+    }
+
+
+
+    function mouseOver(songs) {
+        var music = document.getElementById(songs);
+        music.play()
+    }
+
+    function mouseOut(songs) {
+        var music = document.getElementById(songs);
+        music.pause()
+    }
+
+    function watch() {
+        text_watch.style.display = 'inline';
+    }
+
+    function watchOut() {
+        text_watch.style.display = 'none';
+    }
+
+    function enquete() {
+        text_enquete.style.display = 'inline';
+    }
+
+    function enqueteOut() {
+        text_enquete.style.display = 'none';
+    }
+
+
+
+</script>
